@@ -1,0 +1,19 @@
+.news-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 600px;
+  text-align: left;
+  background-color: #f9f9f9;
+}
+
+.news-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.news-card p {
+  font-size: 1em;
+  color: #555;
+}
