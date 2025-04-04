@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS  # Import CORS
 from news_fetcher import fetch_news
 import os
@@ -22,13 +22,17 @@ def get_news():
             return jsonify({"error": "API key not found"}), 500
 
         print(f"Fetching news for query: {query}")  # Log the query
-        articles = fetch_news(api_key, query)  # Pass the query parameter to fetch_news
+        articles = fetch_news(api_key, query)
         if not articles:
             print("No articles fetched from the news API.")  # Log if no articles are fetched
             return jsonify({"error": "No articles found for the given query."}), 200
 
-        # Return the fetched articles directly
-        return jsonify(articles), 200
+        # Add headers to disable caching
+        response = make_response(jsonify(articles), 200)
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
     except Exception as e:
         print(f"Error in /news endpoint: {e}")  # Log the error
         return jsonify({"error": str(e)}), 500

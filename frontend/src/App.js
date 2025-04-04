@@ -10,7 +10,9 @@ function App() {
   const fetchNews = async (query) => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news?query=${query}`);
+      // Append a timestamp to the URL to bypass the cache
+      const timestamp = new Date().getTime();
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news?query=${query}&_=${timestamp}`);
       console.log('Response status:', response.status); // Log the response status
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
