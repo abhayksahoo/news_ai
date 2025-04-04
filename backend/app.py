@@ -15,12 +15,12 @@ CORS(app)  # Enable CORS for all routes
 def get_news():
     try:
         query = request.args.get('query', 'technology')  # Default to 'technology' if no query is provided
-        print(f"Received request for query: {query}")  # Log each request
+        # print(f"Received request for query: {query}")  # Log each request
 
-        print(f"Fetching news for query: {query}")  # Log the query
+        # print(f"Fetching news for query: {query}")  # Log the query
         articles = fetch_news(NEWS_API_KEY, query)
         if not articles:
-            print("No articles fetched from the news API.")  # Log if no articles are fetched
+            # print("No articles fetched from the news API.")  # Log if no articles are fetched
             return jsonify({"error": "No articles found for the given query."}), 200
 
         # Add headers to disable caching
@@ -30,7 +30,7 @@ def get_news():
         response.headers["Expires"] = "0"
         return response
     except Exception as e:
-        print(f"Error in /news endpoint: {e}")  # Log the error
+        # print(f"Error in /news endpoint: {e}")  # Log the error
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':

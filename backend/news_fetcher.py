@@ -7,14 +7,15 @@ def fetch_news(api_key, query, language='en'):
     }
     print(f"Requesting URL: {url}")  # Log the full request URL
     response = requests.get(url, headers=headers)
-    print(f"Response status code: {response.status_code}")  # Log the status code
-    print(f"Response body: {response.text}")  # Log the response body
+    # print(f"Response status code: {response.status_code}")  # Log the status code
+    # print(f"Response body: {response.text}")  # Log the response body
     if response.status_code == 200:
         results = response.json().get('articles', [])
         # Limit the number of articles to 5
         limited_results = results[:5]
         if not limited_results:
-            print("No articles found for the query.")  # Log if no articles are found
+            # print("No articles found for the query.")  # Log if no articles are found
+            return []
         return [
             {
                 "title": article.get('title', "No title available"),
@@ -27,8 +28,8 @@ def fetch_news(api_key, query, language='en'):
             for article in limited_results
         ]
     elif response.status_code == 429:
-        print("API quota exceeded. Returning an error message.")
+        print("API quota excded. Returning an error message.")
         return {"error": "API quota exceeded. Please try again later or upgrade your plan."}
     else:
-        print(f"Error fetching news from NewsAPI.org: {response.status_code}, Response: {response.text}")  # Log the error
-        return []
+        # print(f"Error fetching news from NewsAPI.org: {response.status_code}, Response: {response.text}")  # Log the error
+        return {"error": f"Error fetching news: {response.status_code}"}
