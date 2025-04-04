@@ -1,18 +1,25 @@
 {
-  "name": "news_ai_frontend",
+  "name": "news-ai-frontend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-icons": "^4.12.0",
-    "react-scripts": "^5.0.0"
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "autoprefixer": "^10.4.14",
+    "lucide-react": "^0.487.0",
+    "postcss": "^8.4.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.3.2"
   },
   "browserslist": {
     "production": [
@@ -25,5 +32,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3"
   }
 }

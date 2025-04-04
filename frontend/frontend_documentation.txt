@@ -1,0 +1,203 @@
+
+# Frontend Documentation
+
+This document provides a detailed overview of the frontend section of the **News AI** project. It includes information about all the files, variables, and their purposes.
+
+---
+
+## **Overview**
+The frontend is built using **React** and styled with **Tailwind CSS**. It fetches news articles from the backend and displays them in a clean, responsive UI. The app supports dark mode and includes a search bar for querying topics.
+
+---
+
+## **Environment Variables**
+### `/frontend/.env`
+- **`REACT_APP_BACKEND_URL`**:
+  - **Purpose**: Specifies the backend URL for API requests.
+  - **Example**: `http://127.0.0.1:5000`
+  - **Why**: This allows the frontend to dynamically connect to the backend without hardcoding the URL.
+
+---
+
+## **File Structure**
+```
+frontend/
+├── public/
+│   ├── index.html       # Main HTML file
+├── src/
+│   ├── index.js         # Entry point for the React app
+│   ├── App.js           # Main React component
+│   ├── components/      # Folder for reusable React components
+│   │   ├── Header.js    # Navbar component
+│   │   ├── SearchBar.js # Search bar component
+│   │   ├── NewsCard.js  # Component to display individual news articles
+│   │   ├── Footer.js    # Footer component
+│   ├── styles/          # Folder for CSS files
+│   │   ├── App.css      # Global styles for the app
+├── tailwind.config.js   # Tailwind CSS configuration
+├── package.json         # Dependencies and scripts for the React app
+├── .env                 # Environment variables
+```
+
+---
+
+## **File Details**
+
+### **1. `/public/index.html`**
+- **Language**: HTML
+- **Purpose**: The main HTML file where the React app is mounted.
+- **Key Elements**:
+  - `<div id="root"></div>`: The root element where the React app is rendered.
+
+---
+
+### **2. `/src/index.js`**
+- **Language**: JavaScript
+- **Purpose**: The entry point for the React app.
+- **Key Variables**:
+  - **`React.StrictMode`**: Ensures the app runs in strict mode for better debugging.
+  - **`App`**: The main React component imported from `App.js`.
+
+---
+
+### **3. `/src/App.js`**
+- **Language**: JavaScript
+- **Purpose**: The main React component that manages the app's layout and state.
+- **Key Variables**:
+  - **`news`**: Stores the fetched news articles.
+  - **`loading`**: Indicates whether the app is fetching data.
+  - **`error`**: Stores any error messages from the API.
+  - **`darkMode`**: Tracks whether dark mode is enabled.
+- **Key Functions**:
+  - **`fetchNews(query)`**: Fetches news articles from the backend based on the search query.
+  - **`toggleDarkMode()`**: Toggles between light and dark modes.
+
+---
+
+### **4. `/src/components/Header.js`**
+- **Language**: JavaScript
+- **Purpose**: The navbar component.
+- **Key Features**:
+  - Displays the app title.
+  - Includes a search input field and a dark mode toggle button.
+
+---
+
+### **5. `/src/components/SearchBar.js`**
+- **Language**: JavaScript
+- **Purpose**: A reusable component for the search bar.
+- **Key Variables**:
+  - **`query`**: Stores the user's search input.
+- **Key Functions**:
+  - **`handleSearch()`**: Triggers the `onSearch` function passed as a prop when the user submits a query.
+
+---
+
+### **6. `/src/components/NewsCard.js`**
+- **Language**: JavaScript
+- **Purpose**: A reusable component to display individual news articles.
+- **Key Props**:
+  - **`title`**: The title of the news article.
+  - **`url`**: The URL of the news article.
+  - **`description`**: A short description of the article.
+  - **`imageUrl`**: The URL of the article's image.
+  - **`publishedAt`**: The publication date of the article.
+
+---
+
+### **7. `/src/components/Footer.js`**
+- **Language**: JavaScript
+- **Purpose**: A simple footer component.
+- **Key Features**:
+  - Displays copyright text.
+  - Adapts to light and dark modes.
+
+---
+
+### **8. `/src/styles/App.css`**
+- **Language**: CSS
+- **Purpose**: Contains global styles for the app.
+- **Key Styles**:
+  - Sets the default font family and margin for the app.
+
+---
+
+### **9. `/tailwind.config.js`**
+- **Language**: JavaScript
+- **Purpose**: Configures Tailwind CSS for the project.
+- **Key Features**:
+  - Enables dark mode with the `class` strategy.
+  - Extends the default theme with custom colors.
+  - Includes the `@tailwindcss/line-clamp` plugin for truncating text.
+
+---
+
+### **10. `/package.json`**
+- **Language**: JSON
+- **Purpose**: Manages dependencies and scripts for the React app.
+- **Key Dependencies**:
+  - **`react`**: The core library for building the UI.
+  - **`react-icons`**: Provides icons for the app.
+  - **`tailwindcss`**: A utility-first CSS framework for styling.
+  - **`@tailwindcss/line-clamp`**: A plugin for truncating text.
+
+---
+
+## **Key Variables and Their Purposes**
+
+### **State Variables**
+1. **`news`**:
+   - **Type**: Array
+   - **Purpose**: Stores the list of news articles fetched from the backend.
+
+2. **`loading`**:
+   - **Type**: Boolean
+   - **Purpose**: Indicates whether the app is currently fetching data.
+
+3. **`error`**:
+   - **Type**: String
+   - **Purpose**: Stores error messages from the API.
+
+4. **`darkMode`**:
+   - **Type**: Boolean
+   - **Purpose**: Tracks whether dark mode is enabled.
+
+---
+
+## **How It Works**
+1. **Search Functionality**:
+   - The user enters a query in the search bar.
+   - The `fetchNews` function sends the query to the backend and updates the `news` state with the results.
+
+2. **Dark Mode**:
+   - The user toggles the dark mode button.
+   - The `darkMode` state is updated, and the `dark` class is added or removed from the `document.documentElement`.
+
+3. **Responsive Design**:
+   - The app uses Tailwind CSS utility classes to ensure responsiveness across devices.
+
+---
+
+## **Future Enhancements**
+1. Add pagination to fetch more articles.
+2. Implement user authentication for personalized news feeds.
+3. Add animations for smoother transitions between light and dark modes.
+
+---
+
+## **Testing**
+1. **Local Development**:
+   - Start the backend server: `python app.py`.
+   - Start the frontend server: `npm start`.
+   - Open the app in your browser at `http://localhost:3000`.
+
+2. **API Testing**:
+   - Use Postman or `curl` to test the `/news` endpoint.
+
+3. **Responsiveness**:
+   - Test the app on different screen sizes to ensure it adapts properly.
+
+---
+
+## **License**
+This project is open-source and available under the MIT License.

@@ -1,35 +1,37 @@
 import React, { useState } from 'react';
-import { FiSearch } from 'react-icons/fi'; // Install react-icons if not already installed
+import { FiSearch } from 'react-icons/fi';
 
-function SearchBar({ onSearch }) {
+const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
     if (query.trim()) {
-      onSearch(query);
+      onSearch(query.trim());
     }
   };
 
   return (
-    <div className="flex justify-center mt-6">
-      <div className="relative w-full md:w-1/2">
-        <input
-          type="text"
-          placeholder="Search for news (e.g., AI, Tesla, Economy...)"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-full px-6 py-3 shadow-md focus:ring-2 focus:ring-blue-600 outline-none dark:bg-gray-800 dark:text-gray-200"
-        />
-        <FiSearch className="absolute top-3 right-4 text-gray-400 dark:text-gray-300" size={20} />
-      </div>
+    <form
+      onSubmit={handleSearch}
+      className="flex items-center justify-between bg-white dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 rounded-full px-4 py-2 w-full max-w-xl mx-auto mb-6 transition-all"
+    >
+      <input
+        type="text"
+        placeholder="Search latest news..."
+        className="flex-grow bg-transparent text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 outline-none px-2"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
       <button
-        onClick={handleSearch}
-        className="ml-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-md transition-all"
+        type="submit"
+        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+        aria-label="Search"
       >
-        Search
+        <FiSearch className="w-5 h-5" />
       </button>
-    </div>
+    </form>
   );
-}
+};
 
 export default SearchBar;

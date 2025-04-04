@@ -1,37 +1,33 @@
 import React from 'react';
-import './NewsCard.css';
 
-function NewsCard({ title, url, description, imageUrl, publishedAt }) {
-  const formattedDate = publishedAt ? new Date(publishedAt).toLocaleString() : 'Unknown Date';
-
+const NewsCard = ({ title, url, description, imageUrl, publishedAt }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-md hover:shadow-lg rounded-xl overflow-hidden transition-all duration-300">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col border border-gray-200 dark:border-gray-700"
+    >
       {imageUrl && (
         <img
           src={imageUrl}
           alt={title}
-          className="object-cover h-48 w-full hover:scale-105 transition-transform"
+          className="w-full h-48 object-cover"
         />
       )}
-      <div className="p-4">
-        <h2 className="text-lg font-bold text-blue-600 hover:underline">
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            {title}
-          </a>
-        </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{formattedDate}</p>
-        <p className="text-gray-700 dark:text-gray-300 mt-4 line-clamp-3">{description}</p>
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
-        >
-          Read More
-        </a>
+      <div className="p-4 flex flex-col justify-between flex-grow">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
+          {title}
+        </h3>
+        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 line-clamp-3">
+          {description}
+        </p>
+        <span className="text-xs text-gray-500 dark:text-gray-400 mt-auto">
+          {new Date(publishedAt).toLocaleDateString()}
+        </span>
       </div>
-    </div>
+    </a>
   );
-}
+};
 
 export default NewsCard;
