@@ -1,18 +1,11 @@
 import React from 'react';
-import './NewsCard.css';
 
-function NewsCard({ title, url, description, imageUrl, publishedAt }) {
+export default function NewsCard({ title, url, description, imageUrl, publishedAt }) {
   const formattedDate = publishedAt ? new Date(publishedAt).toLocaleString() : 'Unknown Date';
 
   return (
     <div className="bg-white dark:bg-gray-800 shadow-md hover:shadow-lg rounded-xl overflow-hidden transition-all duration-300">
-      {imageUrl && (
-        <img
-          src={imageUrl}
-          alt={title}
-          className="object-cover h-48 w-full hover:scale-105 transition-transform"
-        />
-      )}
+      {imageUrl && <img src={imageUrl} alt={title} className="object-cover h-48 w-full hover:scale-105 transition-transform" />}
       <div className="p-4">
         <h2 className="text-lg font-bold text-blue-600 hover:underline">
           <a href={url} target="_blank" rel="noopener noreferrer">
@@ -33,5 +26,3 @@ function NewsCard({ title, url, description, imageUrl, publishedAt }) {
     </div>
   );
 }
-
-export default NewsCard;

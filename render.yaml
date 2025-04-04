@@ -2,7 +2,7 @@ services:
   - type: web
     name: news-ai-backend
     env: python
-    pythonVersion: 3.13
+    pythonVersion: 3.9  # Replace with the desired version
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python -m waitress --host=0.0.0.0 --port=5000 app:app"
     envVars:
