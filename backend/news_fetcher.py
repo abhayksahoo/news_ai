@@ -11,11 +11,21 @@ def fetch_news(api_key, query, language='en'):
     print(f"Response body: {response.text}")  # Log the response body
     if response.status_code == 200:
         results = response.json().get('articles', [])
-        # Limit the number of articles to 3
-        limited_results = results[:3]
+        # Limit the number of articles to 5
+        limited_results = results[:5]
         if not limited_results:
             print("No articles found for the query.")  # Log if no articles are found
-        return [{"title": article['title'], "content": article.get('description', 'No content available')} for article in limited_results]
+        return [
+            {
+                "title": article.get('title', "No title available"),
+                "content": article.get('content', "No content available"),
+                "description": article.get('description', "No description available"),
+                "url": article.get('url', "#"),
+                "urlToImage": article.get('urlToImage', None),
+                "publishedAt": article.get('publishedAt', None),
+            }
+            for article in limited_results
+        ]
     elif response.status_code == 429:
         print("API quota exceeded. Returning an error message.")
         return {"error": "API quota exceeded. Please try again later or upgrade your plan."}

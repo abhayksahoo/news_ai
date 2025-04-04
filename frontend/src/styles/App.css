@@ -13,6 +13,21 @@
   text-align: left;
 }
 
+.news-card h2 a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.news-card h2 a:hover {
+  text-decoration: underline;
+}
+
+.news-card img.news-image {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+
 .search-bar {
   margin-bottom: 20px;
 }

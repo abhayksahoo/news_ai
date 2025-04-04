@@ -1,14 +1,13 @@
-# News AI
+# News Fetcher
 
-News AI is an application that allows users to search for the latest news on any topic of their interest. It fetches the top 5 news articles, summarizes them using an open-source language model, and provides source links for further reading.
+News Fetcher is an application that allows users to search for the latest news on any topic of their interest. It fetches the top 5 news articles and provides source links for further reading.
 
 ## Project Structure
 ```
-news_ai/
+news_fetcher/
 ├── backend/
 │   ├── app.py               # Main Flask app
 │   ├── news_fetcher.py      # Module for fetching news
-│   ├── summarizer.py        # Module for summarizing news
 │   ├── .env                 # Environment variables (e.g., API keys)
 │   ├── requirements.txt     # Python dependencies
 │   ├── __init__.py          # Marks backend as a Python package
@@ -88,7 +87,7 @@ news_ai/
 ### Running the Application
 1. Ensure the backend server is running on `http://localhost:5000`.
 2. Open the frontend in your browser at `http://localhost:3000`.
-3. Use the search bar to type a topic and view summarized news articles.
+3. Use the search bar to type a topic and view news articles.
 
 ### Currents API Integration
 
@@ -104,7 +103,7 @@ https://api.currentsapi.services/v1/search?keywords={query}&language={language}&
    curl "http://127.0.0.1:5000/news?query=technology"
    ```
 
-2. Ensure the backend returns a JSON response with summarized news articles.
+2. Ensure the backend returns a JSON response with news articles.
 
 ### Running the Backend in Production
 
@@ -155,7 +154,6 @@ frontend/.env
 
 ## Future Enhancements
 - Add pagination for more news articles.
-- Improve summarization quality with fine-tuned models.
 - Add user authentication for personalized news feeds.
 
 ## License
