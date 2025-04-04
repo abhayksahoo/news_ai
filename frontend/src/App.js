@@ -21,7 +21,7 @@ function App() {
         setNews([]);
       } else {
         console.log('Response data:', data); // Log the response data
-        setNews(data);
+        setNews(data.slice(0, 5)); // Limit to 5 articles
       }
     } catch (error) {
       console.error('Error fetching news:', error);
@@ -33,14 +33,21 @@ function App() {
 
   return (
     <div className="app">
-      <h1>News Summarizer</h1>
+      <h1>News Fetcher</h1>
       <SearchBar onSearch={fetchNews} />
       {loading ? (
         <p>Loading...</p>
       ) : (
         news.length > 0 ? (
           news.map((article, index) => (
-            <NewsCard key={index} title={article.title} summary={article.summary} />
+            <NewsCard
+              key={index}
+              title={article.title}
+              url={article.url}
+              description={article.description || article.content || 'No description available'}
+              imageUrl={article.urlToImage}
+              publishedAt={article.publishedAt}
+            />
           ))
         ) : (
           <p>No news articles found.</p>
