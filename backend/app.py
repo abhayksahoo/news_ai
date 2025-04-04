@@ -2,12 +2,11 @@ from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS  # Import CORS
 from news_fetcher import fetch_news
 import os
-from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
-if not find_dotenv():
-    raise FileNotFoundError(".env file not found. Please create one with the required API keys.")
-load_dotenv()
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+if not NEWS_API_KEY:
+    raise EnvironmentError("NEWS_API_KEY environment variable not found. Please set it in Render's Environment Variables.")
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -17,12 +16,9 @@ def get_news():
     try:
         query = request.args.get('query', 'technology')  # Default to 'technology' if no query is provided
         print(f"Received request for query: {query}")  # Log each request
-        api_key = os.getenv("NEWS_API_KEY")
-        if not api_key:
-            return jsonify({"error": "API key not found"}), 500
 
         print(f"Fetching news for query: {query}")  # Log the query
-        articles = fetch_news(api_key, query)
+        articles = fetch_news(NEWS_API_KEY, query)
         if not articles:
             print("No articles fetched from the news API.")  # Log if no articles are fetched
             return jsonify({"error": "No articles found for the given query."}), 200
