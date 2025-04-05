@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const NewsCard = ({ title, url, description, imageUrl, publishedAt }) => {
+function NewsCard({ title, url, description, imageUrl, publishedAt }) {
   return (
     <a
       href={url}
@@ -9,11 +9,7 @@ const NewsCard = ({ title, url, description, imageUrl, publishedAt }) => {
       className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col border border-gray-200 dark:border-gray-700"
     >
       {imageUrl && (
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-full h-48 object-cover"
-        />
+        <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
       )}
       <div className="p-4 flex flex-col justify-between flex-grow">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
@@ -28,6 +24,6 @@ const NewsCard = ({ title, url, description, imageUrl, publishedAt }) => {
       </div>
     </a>
   );
-};
+}
 
 export default NewsCard;

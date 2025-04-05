@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { FiSearch } from 'react-icons/fi';
+import React, { useState } from "react";
+import { FiSearch } from "react-icons/fi";
 
-const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+function SearchBar({ onSearch }) {
+  const [query, setQuery] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -32,6 +32,6 @@ const SearchBar = ({ onSearch }) => {
       </button>
     </form>
   );
-};
+}
 
 export default SearchBar;

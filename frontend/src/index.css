@@ -1,0 +1,38 @@
+
+/* Reset some basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Apply a smooth font and base background */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #1a1a1a;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode support */
+.dark body {
+  background-color: #121212;
+  color: #eaeaea;
+}
+
+/* Container utility */
+.news-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+}
+
+/* Loading/Error Text */
+p {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 2rem;
+}
