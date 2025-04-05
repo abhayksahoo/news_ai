@@ -11,7 +11,7 @@ def fetch_news(api_key, query, language='en'):
     # print(f"Response body: {response.text}")  # Log the response body
     if response.status_code == 200:
         results = response.json().get('articles', [])
-        limited_results = results[:5]
+        limited_results = results[:8]
         if not limited_results:
             # print("No articles found for the query.")  # Log if no articles are found
             return []
