@@ -1,6 +1,14 @@
 import React from "react";
 
 function NewsCard({ title, url, description, imageUrl, publishedAt }) {
+  const formattedDate = publishedAt
+    ? new Date(publishedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Date not available";
+
   return (
     <a
       href={url}
@@ -19,7 +27,7 @@ function NewsCard({ title, url, description, imageUrl, publishedAt }) {
           {description}
         </p>
         <span className="text-xs text-gray-500 dark:text-gray-400 mt-auto">
-          {new Date(publishedAt).toLocaleDateString()}
+          {formattedDate}
         </span>
       </div>
     </a>
